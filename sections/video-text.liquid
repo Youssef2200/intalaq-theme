@@ -1,0 +1,174 @@
+{% schema %}
+{
+  "name": "Vidéo et texte",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Ajoutez une vidéo et un texte d'accompagnement"
+    },
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Sélectionnez une vidéo hébergée sur Shopify"
+    },
+    {
+      "type": "text",
+      "id": "video_title",
+      "label": "Titre de la vidéo",
+      "default": "Titre par défaut"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "URL de la vidéo externe",
+      "info": "Ajoutez l'URL de la vidéo si vous souhaitez utiliser une vidéo externe"
+    },
+    {
+      "type": "text",
+      "id": "video_width",
+      "label": "Largeur de la vidéo (desktop)",
+      "default": "100%",
+      "info": "Définissez la largeur de la vidéo sur desktop (ex: '100%' ou '800px')"
+    },
+    {
+      "type": "text",
+      "id": "video_width_mobile",
+      "label": "Largeur de la vidéo (mobile)",
+      "default": "100%",
+      "info": "Définissez la largeur de la vidéo sur mobile (ex: '100%' ou '300px')"
+    },
+    {
+      "type": "text",
+      "id": "video_height",
+      "label": "Hauteur de la vidéo",
+      "default": "auto",
+      "info": "Définissez la hauteur de la vidéo (ex: 'auto' ou '450px')"
+    },
+    {
+      "type": "text",
+      "id": "section_width",
+      "label": "Largeur de la section (desktop)",
+      "default": "100%",
+      "info": "Définissez la largeur de la section sur desktop (ex: '100%' ou '1200px')"
+    },
+    {
+      "type": "text",
+      "id": "section_width_mobile",
+      "label": "Largeur de la section (mobile)",
+      "default": "100%",
+      "info": "Définissez la largeur de la section sur mobile (ex: '100%' ou '90%')"
+    },
+    {
+      "type": "richtext",
+      "id": "text_content",
+      "label": "Texte d'accompagnement",
+      "default": "<p>Voici un texte d'accompagnement pour la vidéo. Modifiez-le selon vos besoins.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Lecture automatique",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vidéo et texte",
+      "category": "Contenu"
+    }
+  ]
+}
+{% endschema %}
+
+{% assign section_width = section.settings.section_width %}
+{% assign section_width_mobile = section.settings.section_width_mobile %}
+{% assign video_width = section.settings.video_width %}
+{% assign video_width_mobile = section.settings.video_width_mobile %}
+{% assign video_height = section.settings.video_height %}
+{% assign auto_play = section.settings.auto_play %}
+
+<section class="video-et-texte">
+  <div class="two-columns">
+    {% assign video = section.settings.video_file %}
+    {% assign video_url = section.settings.video_url %}
+    {% assign title = section.settings.video_title %}
+    {% assign text_content = section.settings.text_content %}
+
+    <div class="column video-column">
+      <!-- Titre de la vidéo -->
+      <h2 class="video-title">{{ title }}</h2>
+
+      <!-- Conteneur de la vidéo -->
+      <div class="video-container">
+        {% if video != blank %}
+          <!-- Si une vidéo est téléchargée sur Shopify -->
+          <video class="video-player" width="{{ video_width }}" height="{{ video_height }}" {% if auto_play %}autoplay{% endif %} loop muted controls>
+            <source src="{{ video | file_url }}" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéo.
+          </video>
+        {% elsif video_url != blank %}
+          <!-- Si une URL externe est fournie -->
+          <video class="video-player" width="{{ video_width }}" height="{{ video_height }}" {% if auto_play %}autoplay{% endif %} loop muted controls>
+            <source src="{{ video_url }}" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéo.
+          </video>
+        {% else %}
+          <!-- Message si aucune vidéo n'est ajoutée -->
+          <p>Aucune vidéo n'a été ajoutée.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="column text-column">
+      <!-- Contenu du texte d'accompagnement -->
+      <div class="text-content">
+        {{ text_content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-et-texte {
+    max-width: {{ section_width }};
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .video-et-texte .two-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .video-et-texte .column {
+    flex: 1 1 48%;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .video-et-texte .video-container {
+    text-align: center;
+  }
+
+  .video-et-texte .video-player {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Largeur spécifique pour mobile */
+  @media (max-width: 768px) {
+    .video-et-texte {
+      max-width: {{ section_width_mobile }};
+    }
+
+    .video-et-texte .column {
+      flex: 1 1 100%;
+    }
+
+    .video-et-texte .video-player {
+      width: {{ video_width_mobile }} !important;
+    }
+  }
+</style>

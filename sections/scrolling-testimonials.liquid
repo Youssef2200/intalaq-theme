@@ -1,0 +1,360 @@
+{{ 'marquee.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign section_st = section.settings
+  assign section_width = section_st.section_width
+  assign color_scheme = section_st.color_scheme
+  if section_st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+-%}
+{%- capture style -%}
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--speed: {{ section_st.speed }}s;
+{%- endcapture -%}
+
+<style>
+.sec__scrolling-testimonials .testimonial-wrapper {
+  min-width: 380px;
+  flex-shrink: 0;
+  
+}
+
+.sec__scrolling-testimonials .testimonial-card {
+  background: #5F8E3E;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+}
+
+.sec__scrolling-testimonials .testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec__scrolling-testimonials .testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sec__scrolling-testimonials .avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--avatar-bg);
+}
+
+.sec__scrolling-testimonials .testimonial-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sec__scrolling-testimonials .testimonial-text {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  color: inherit;
+}
+
+.sec__scrolling-testimonials .testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+}
+
+.sec__scrolling-testimonials .star-rating {
+  display: flex;
+  gap: 2px;
+  color: #ffcc00;
+}
+
+.sec__scrolling-testimonials .star-rating svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .sec__scrolling-testimonials .testimonial-wrapper {
+    min-width: 320px;
+  }
+}
+
+
+
+.sec__scrolling-testimonials .testimonial-wrapper {
+  width: 400px; /* Forces a consistent card width */
+  flex-shrink: 0;
+  white-space: normal; /* Allows text to break into multiple lines */
+  margin-inline-end: 30px; /* Restores space between cards */
+}
+
+.sec__scrolling-testimonials .star-rating {
+  display: flex;
+  gap: 2px; /* Reduces space between stars */
+  margin-top: -2px;
+}
+
+.sec__scrolling-testimonials .star-rating svg {
+  width: 22px; /* Increases star size */
+  height: 22px;
+  margin: 0;
+}
+</style>
+
+<div
+  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__scrolling-testimonials color-{{ color_scheme }} gradient{{ reset_spacing }}"
+  style="{{ style | strip | strip_newlines }}"
+>
+  <div class="{{ section_width }}">
+    <div
+      class="marquee flex overflow-hidden w-full justify-center"
+      {% if section_st.direction == 'right' %}
+        direction="rtl"
+      {% endif %}
+      style="--col-gap: {{ section_st.space_between_text }}px;--col-gap-desktop: {{ section_st.space_between_text }}px;"
+    >
+      {%- for i in (0..5) -%}
+        <div class="flex animation-marquee {{ section_st.direction }}">
+          {%- for block in section.blocks -%}
+            {% assign block_st = block.settings %}
+            <div class="flex gap align-center whitespace-nowrap">
+              <div class="testimonial-wrapper" style="--card-bg: {{ block_st.card_background }}; --avatar-bg: {{ block_st.avatar_gradient }};">
+                <div class="testimonial-card">
+                {% if section.settings.show_avatar %}
+                  <div class="testimonial-avatar">
+                    {% if block_st.avatar != blank %}
+                      <img src="{{ block_st.avatar | image_url: width: 160 }}" alt="{{ block_st.author_name }}" loading="lazy">
+                    {% else %}
+                      <div class="avatar-placeholder"></div>
+                    {% endif %}
+                  </div>
+                {%  endif %}
+                  <div class="testimonial-content">
+                    <div class="testimonial-text">{{ block_st.testimonial_text }}</div>
+                    <div class="testimonial-author">
+                      {{ block_st.author_name }}
+                      {% if block_st.show_rating %}
+                        <div class="star-rating">
+                          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="spacing"></span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling Testimonials",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.all.section_width.label",
+      "default": "full_width",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.section_width.container.label"
+        },
+        {
+          "value": "fluid_container",
+          "label": "t:sections.all.section_width.fluid_container.label"
+        },
+        {
+          "value": "stretch_width",
+          "label": "t:sections.all.section_width.stretch_width.label"
+        },
+        {
+          "value": "full_width",
+          "label": "t:sections.all.section_width.full_width.label"
+        }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.scrolling_text.settings.scrolling.label",
+      "info": "t:sections.scrolling_text.settings.scrolling.info"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "t:sections.scrolling_text.settings.direction.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.scrolling_text.settings.direction.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.scrolling_text.settings.direction.right.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "t:sections.scrolling_text.settings.speed.label",
+      "default": 30,
+      "min": 10,
+      "max": 120,
+      "step": 5,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "space_between_text",
+      "label": "t:sections.scrolling_text.settings.space_between_text.label",
+      "default": 12,
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_padding.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.section_padding.top.label",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.section_padding.bottom.label",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "t:sections.all.section_padding.reset_spacing.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "limit": 10,
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar Image"
+        },
+        {
+          "type": "text",
+          "id": "avatar_gradient",
+          "label": "Avatar Background (if no image)",
+          "default": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          "info": "CSS gradient for avatar background"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial Text",
+          "default": "Smells like confidence wrapped in soft petals. obsessed."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Sofia M."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show 5-star rating",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "card_background",
+          "label": "Card Background Color",
+          "default": "#e8d5e8"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "Smells like confidence wrapped in soft petals. obsessed.",
+            "author_name": "Sofia M.",
+            "card_background": "#e8d5e8",
+            "avatar_gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "Warm, smoky, and addictive. I can't stop sniffing my wrist.",
+            "author_name": "Aaliyah T.",
+            "card_background": "#e8d5e8",
+            "avatar_gradient": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial_text": "Fresh and clean but still sexy. Wears so well all day.",
+            "author_name": "Eleni K.",
+            "card_background": "#e8d5e8",
+            "avatar_gradient": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

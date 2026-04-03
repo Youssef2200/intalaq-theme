@@ -1,0 +1,270 @@
+{%- style -%}
+.section-{{ section.id }}-padding {
+padding-top: 14px;
+padding-bottom: 14px;
+}
+@media screen and (min-width: 750px) {
+.section-{{ section.id }}-padding {
+padding-top:14px;
+padding-bottom:14px;
+}
+}
+{%- endstyle -%}
+{% assign rtl_locales = 'ar,fa,he,ur,ku,ps,sd,dv,syr,ug,yi' %}
+<div class="scrolling-box-{{ section.id }} section-{{ section.id }}-padding {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="marquee-{{ section.id }}">
+     <div class="marquee-content-{{ section.id }}">
+        {%- for block in section.blocks -%}
+         {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+              <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+                 &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+                 {{ block.settings.icon }}
+              </div>
+           {% else %}
+              <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+                 {{ block.settings.icon }}
+                 &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+              </div>
+           {% endif %}
+        {% endfor %}
+     </div>
+     <div class="marquee-content-{{ section.id }}">
+        {%- for block in section.blocks -%}
+         {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+              <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+                 &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+                 {{ block.settings.icon }}
+              </div>
+           {% else %}
+              <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+                 {{ block.settings.icon }}
+                 &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+              </div>
+           {% endif %}
+        {% endfor %}
+     </div>
+     <div class="marquee-content-{{ section.id }}">
+      {%- for block in section.blocks -%}
+         {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+            <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+               &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+               {{ block.settings.icon }}
+            </div>
+         {% else %}
+            <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+               {{ block.settings.icon }}
+               &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+            </div>
+         {% endif %}
+      {% endfor %}
+   </div>
+   <div class="marquee-content-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+          <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+             &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+             {{ block.settings.icon }}
+          </div>
+       {% else %}
+          <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+             {{ block.settings.icon }}
+             &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+          </div>
+       {% endif %}
+    {% endfor %}
+ </div>
+ <div class="marquee-content-{{ section.id }}">
+  {%- for block in section.blocks -%}
+   {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+        <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+           &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+           {{ block.settings.icon }}
+        </div>
+     {% else %}
+        <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+           {{ block.settings.icon }}
+           &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+        </div>
+     {% endif %}
+  {% endfor %}
+</div>
+<div class="marquee-content-{{ section.id }}">
+  {%- for block in section.blocks -%}
+   {% if settings.rtl_ltr_direction == 'auto' and rtl_locales contains shop.locale %}
+        <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+           &nbsp;&nbsp;&nbsp;{{ block.settings.marquee_text }}&nbsp;
+           {{ block.settings.icon }}
+        </div>
+     {% else %}
+        <div class="marquee-tag-{{ section.id }} announcement-marquee-tag-{{ section.id }}">
+           {{ block.settings.icon }}
+           &nbsp;{{ block.settings.marquee_text }}&nbsp;&nbsp;&nbsp;
+        </div>
+     {% endif %}
+  {% endfor %}
+</div>
+     
+  </div>
+</div>
+
+<style>
+   .scrolling-box-{{ section.id }} {
+   background-color: {{ section.settings.background_color }};
+   direction:ltr
+   }
+   .marquee-tag-{{ section.id }} {
+   color: {{ section.settings.text_color }};
+   }
+   .marquee-content-{{ section.id }} {
+   animation: scrollText_ann {{ section.settings.speed }}s linear infinite running;
+   }
+   .marquee-{{ section.id }} .marquee-content-{{ section.id }} .marquee-tag-{{ section.id }} {
+   font-size: 15px;
+   display: flex;
+   }
+   @media screen and (max-width: 749px) {
+   .marquee-{{ section.id }} .marquee-content-{{ section.id }} .marquee-tag-{{ section.id }} {
+   font-size: 14px;
+   }
+   }
+
+   .scrolling-box-{{ section.id }} {
+    width: 100%;
+    opacity:1;
+    pointer-events: all;
+    }
+    .marquee-{{ section.id }} {
+    width: 100%;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    }
+    .marquee-content-{{ section.id }} {
+    display: flex;
+    white-space: nowrap;
+    }
+    .marquee-{{ section.id }} .marquee-content-{{ section.id }} .marquee-tag-{{ section.id }} {
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 500px;
+    line-height: normal;
+    }
+  {% if shop.locale == 'ar' %}
+     .marquee-{{ section.id }} .marquee-content-{{ section.id }} .marquee-tag-{{ section.id }} {
+    flex-direction: row-reverse;
+    }
+    {% endif %}
+    .marquee-{{ section.id }} .marquee-content-{{ section.id }} .marquee-tag-{{ section.id }} span {
+    padding-left: 10px;
+    padding-right: 20px;
+    }
+    .announcement-marquee-tag-{{ section.id }} {
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+  
+    .announcement-marquee-tag-{{ section.id }} svg {
+      height: 16px;
+      width:16px;
+      fill: {{ section.settings.text_color }};
+      margin-right:5px
+    }
+  .announcement-marquee-tag-{{ section.id }} svg path {
+      fill: {{ section.settings.text_color }}
+    }
+    
+      @keyframes scrollText_ann {
+        0%   { transform: translateX(-100%); }
+        100% { transform: translateX(0%); }
+      }
+    
+
+    {% if section.settings.enable_border %}
+    .scrolling-box-{{ section.id }} {
+      border-bottom: 1px solid {{ section.settings.border_color }};
+    }
+    {% endif %}
+</style>
+
+{%- schema -%}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "id": "speed",
+      "type": "range",
+      "label": "Scrolling duration",
+      "default": 20,
+      "unit": "s",
+      "min": 10,
+      "max": 90
+    },
+    {
+      "id": "enable_border",
+      "type": "checkbox",
+      "label": "Enable border bottom",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border color",
+      "default": "#ffffff"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color",
+      "default": "#F6F6F0"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#C25B41",
+      "info": "Same background and fill color = outline text"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "text",
+      "type": "text",
+      "settings": [
+        {
+          "id": "marquee_text",
+          "type": "html",
+          "default": "Add announcement text here.",
+          "label": "Text"
+        },
+        {
+          "id": "icon",
+          "type": "html",
+          "default": "<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-airplane' viewBox='0 0 16 16'>\n<path d='M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849m.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599'/>\n</svg>",
+          "label": "Icon",
+          "info": "[SVG CODES](https://icons.getbootstrap.com)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

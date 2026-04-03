@@ -1,0 +1,131 @@
+{% schema %}
+{
+  "name": "Pages en vedette",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sélectionnez jusqu'à 3 pages et leurs images"
+    },
+    {
+      "type": "page",
+      "id": "page_1",
+      "label": "Page 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image pour Page 1"
+    },
+    {
+      "type": "page",
+      "id": "page_2",
+      "label": "Page 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image pour Page 2"
+    },
+    {
+      "type": "page",
+      "id": "page_3",
+      "label": "Page 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image pour Page 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pages en vedette",
+      "category": "Contenu"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="featured-pages">
+  <div class="pages-container">
+    {% assign pages = "page_1,page_2,page_3" | split: "," %}
+    {% assign images = "image_1,image_2,image_3" | split: "," %}
+    
+    {% for i in (0..2) %}
+      {% assign page = section.settings[pages[i]] %}
+      {% assign image = section.settings[images[i]] %}
+
+      {% if page and image %}
+        <div class="page-item">
+          <div class="image-container">
+            <img src="{{ image | img_url: '600x600' }}" alt="{{ page.title }}" class="page-image">
+          </div>
+          <h3 class="page-title">{{ page.title }}</h3>
+          <p class="page-excerpt">
+            {{ page.content | strip_html | truncatewords: 20 }}
+          </p>
+          <a href="{{ page.url }}" class="page-link">Lire la suite</a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .featured-pages {
+    padding: 20px;
+  }
+  .pages-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1200px; /* Changer la largeur du réceptacle */
+    margin: 0 auto; /* Centrer */
+  }
+  .page-item {
+    flex: 1;
+    min-width: 300px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .image-container {
+    width: 100%;
+    padding-top: 100%; /* Ratio 1:1 pour rendre l'image carrée */
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #e0e0e0; /* Couleur de fond en attendant l'image */
+  }
+  .page-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pour remplir le carré */
+  }
+  .page-title {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  .page-excerpt {
+    font-size: 14px;
+    color: #555;
+  }
+  .page-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #000000; /* Bouton noir */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .page-link:hover {
+    background: #333333; /* Ombre pour le survol */
+  }
+</style>

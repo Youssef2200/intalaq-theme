@@ -1,0 +1,352 @@
+<section class="levelup-comparison-table levelup-comparison-table--block" style="--bg: #E8F5D2; --table-width: 1000px;">
+  <div class="levelup-wrapper">
+    
+      <h2>{{ section.settings.heading }}</h2>
+      <p style="text-align: center;margin-bottom:3rem">شــاهــد كــيــف يـتـفــوق قـالـبـنــا عـلــى الـقـوالــب الاخــرى مـن حـيـث الـسـرعــة، الـتـصـمـيــم، والـدعــم الـفـنــي</p>
+    
+
+    <div class="levelup-comparison-table__wrapper">
+      <div class="levelup-comparison-table__body">
+        <div class="levelup-comparison-table__row levelup-comparison-table__row--head">
+          <div class="levelup-comparison-table__item">&nbsp;</div>
+          <div class="levelup-comparison-table__item">
+            <img src="https://cdn.shopify.com/s/files/1/0271/3206/7892/files/arabify_theme_logo.svg?v=1760115777" alt="Florine" width="166" height="45" loading="lazy">
+          </div>
+          <div class="levelup-comparison-table__item">
+            <span>{{ section.settings.competitor-text }}</span>
+          </div>
+        </div>
+
+        
+          {%- for block in section.blocks -%}
+              <div class="levelup-comparison-table__row">
+                <div class="levelup-comparison-table__item">
+                  <span>{{ block.settings.block-title }}</span>
+                </div>
+                <div class="levelup-comparison-table__item">
+                  
+                    <svg class="levelup-green-check" xmlns="http://www.w3.org/2000/svg" width="47" height="46" fill="none" viewBox="0 0 47 46"><path fill="#5E8F3E" d="M23.4292.0880127C10.7801.0880127.525879 10.3422.525879 22.9913c0 12.6491 10.254221 22.9033 22.903321 22.9033 12.6491 0 22.9033-10.2542 22.9033-22.9033S36.0783.0880127 23.4292.0880127ZM34.9864 19.5733 23.5347 31.0249c-.5139.5184-1.1929.7754-1.8673.7754-.6744 0-1.3535-.257-1.8673-.7754l-7.0472-7.0472c-1.0323-1.0323-1.0323-2.7023 0-3.7346 1.0323-1.0323 2.7023-1.0323 3.7346 0l5.1799 5.1799 9.5843-9.5844c1.0323-1.0323 2.7024-1.0323 3.7347 0 1.0323 1.0323 1.0323 2.7024 0 3.7347Z"></path></svg>
+                  <span>{{ block.settings.brand-text }}</span>
+                </div>
+                <div class="levelup-comparison-table__item">
+                  
+                    <svg class="levelup-red-x" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48"><path fill="#5E8F3E" d="m35.9825 8.41296 3.4614 3.46144-26.9928 26.9927-3.46135-3.4614L35.9825 8.41296Z"></path><path fill="#F44336" d="m39.4388 35.4057-3.4563 3.4614L8.98975 11.8693l3.46135-3.45634L39.4388 35.4057Z"></path></svg>
+                  <span>{{ block.settings.competitor-text }}</span>
+                </div>
+              </div>
+          {% endfor %}
+        
+      </div>
+    </div>
+
+    <div class="levelup-comparison-table__cta">
+     <a target="_blank" href="https://gumroad.com/checkout?product=cpqkz&quantity=1&referrer=https%3A%2F%2Fgumroad.com%2F" class="levelup-btn levelup-btn--large">{{ section.settings.btn-title }}</a>
+    </div>
+  </div>
+<div style="display:flex;text-align:center;margin-top:5px;gap:10px;justify-content:center;align-items:center">
+    <svg viewBox="0 0 15 15" width="20" height="20" version="1.1" id="rocket" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="path7143" d="M12.5547,1c-2.1441,0-5.0211,1.471-6.9531,4H4
+	C2.8427,5,2.1794,5.8638,1.7227,6.7773L1.1113,8h1.4434H4l1.5,1.5L7,11v1.4453v1.4434l1.2227-0.6113
+	C9.1362,12.8206,10,12.1573,10,11V9.3984c2.529-1.932,4-4.809,4-6.9531V1H12.5547z M10,4c0.5523,0,1,0.4477,1,1l0,0
+	c0,0.5523-0.4477,1-1,1l0,0C9.4477,6,9,5.5523,9,5v0C9,4.4477,9.4477,4,10,4L10,4z M3.5,10L3,10.5C2.2778,11.2222,2,13,2,13
+	s1.698-0.198,2.5-1L5,11.5L3.5,10z"></path> </g></svg>
+  <p style="margin-top:0;margin-bottom:0">{{ section.settings.under-btn-text }}</p>
+</div>
+</section>
+<style>
+  .levelup-comparison-table {
+    background: var(--bg, #F5F2EB);
+    overflow: hidden;
+    padding: clamp(4rem, -.4444rem + 9.2593vw, 6.5rem) 0 clamp(2rem, -1.5556rem + 7.4074vw, 4rem);
+    position: relative;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block {
+    padding: clamp(1.75rem, -2.25rem + 8.333vw, 4rem) 0 clamp(3.5rem, -.944rem + 9.259vw, 6rem);
+}
+
+.levelup-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: min(100% - 2.5rem, 1200px);
+}
+
+.levelup-comparison-table h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.levelup-comparison-table .levelup-comparison-table__body {
+    -ms-overflow-style: none;
+    margin: 0 auto;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__body {
+    margin-inline: auto;
+    max-width: var(--table-width);
+    width: 100%;
+}
+
+.levelup-comparison-table .levelup-comparison-table__row {
+    display: grid;
+    grid-template-columns: minmax(165px, 1fr) minmax(180px, 1fr) minmax(180px, 1fr);
+}
+/*
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__row {
+    grid-template-columns: minmax(clamp(7.25rem, -9.194rem + 34.259vw, 16.5rem), 1fr) minmax(clamp(11.25rem, -5.194rem + 34.259vw, 20.5rem), 1fr) minmax(clamp(11.25rem, 6.694rem + 9.491vw, 13.813rem), 1fr);
+}
+*/
+.levelup-comparison-table .levelup-comparison-table__item {
+    align-items: center;
+    border-bottom: 1px solid grey;
+    display: flex;
+    font-size: clamp(.9375rem, .7153rem + .463vw, 1.0625rem);
+    gap: 13px;
+    justify-content: flex-start;
+    letter-spacing: -.03px;
+    line-height: 1.4;
+    padding: 18px clamp(.75rem, -1.0278rem + 3.7037vw, 1.75rem);
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__row:last-child .levelup-comparison-table__item {
+    border-bottom: none;
+    border-radius: 0 0 14px 14px;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item {
+    font-size: 17px;
+    gap: clamp(.5rem, -.056rem + 1.157vw, .813rem);
+}
+
+.levelup-comparison-table .levelup-comparison-table__item:first-child {
+    font-family: var(--f-heading);
+    font-size: clamp(.875rem, .2083rem + 1.3889vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item:first-child {
+    font-size: 21px;
+    padding-left: 0;
+}
+
+.levelup-comparison-table .levelup-comparison-table__row:first-child .levelup-comparison-table__item {
+    border-bottom: none;
+}
+
+.levelup-comparison-table .levelup-comparison-table__item:nth-child(2) {
+    background: #E8F5D2;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #000000;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__body .levelup-comparison-table__row:last-child .levelup-comparison-table__item:nth-child(2) {
+    border-bottom: 3px solid #000000;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item:nth-child(2) {
+    font-weight: 700;
+    text-wrap: balance;
+}
+
+.levelup-comparison-table .levelup-comparison-table__row:first-child .levelup-comparison-table__item:nth-child(2) {
+    border-radius: 14px 14px 0 0;
+    border-top: 3px solid #000000;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.levelup-comparison-table .levelup-comparison-table__row:first-child .levelup-comparison-table__item:nth-child(3) {
+    font-family: var(--f-heading);
+    font-size: 21px;
+    line-height: 1;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item:nth-child(3) {
+    font-size: 16px;
+    padding-right: 4px;
+}
+
+.levelup-comparison-table .levelup-comparison-table__item svg {
+    flex-shrink: 0;
+    height: clamp(1.5rem, .9444rem + 1.1574vw, 1.8125rem);
+    object-fit: contain;
+    width: clamp(1.5rem, .9444rem + 1.1574vw, 1.8125rem);
+}
+
+.levelup-comparison-table .levelup-comparison-table__item:nth-child(2) svg {
+    color: #E98C2E;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item:nth-child(2) svg {
+    height: clamp(1.625rem, .514rem + 2.315vw, 2.25rem);
+    width: clamp(1.625rem, .514rem + 2.315vw, 2.25rem);
+}
+
+.levelup-comparison-table .levelup-comparison-table__item:nth-child(3) svg {
+    color: rgba(var(--c-black), .5);
+}
+
+.levelup-comparison-table .levelup-comparison-table__row:first-child .levelup-comparison-table__item:nth-child(2) img {
+    height: 80px;
+    object-fit: contain;
+    width: 80%;
+}
+
+.levelup-comparison-table .levelup-comparison-table__cta {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(215px, 1fr) minmax(215px, 1fr);
+    margin-top: 2rem;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__cta {
+    grid-template-columns: minmax(clamp(7.25rem, -9.194rem + 34.259vw, 16.5rem), 1fr) minmax(clamp(11.25rem, -5.194rem + 34.259vw, 20.5rem), 1fr) minmax(clamp(11.25rem, 6.694rem + 9.491vw, 13.813rem), 1fr);
+    margin-inline: auto;
+    max-width: var(--table-width);
+    padding: 0;
+}
+
+.levelup-comparison-table .levelup-comparison-table__cta .levelup-btn {
+    grid-column: 2;
+}
+
+.levelup-btn {
+    align-items: center;
+    background-color: #5E8F3E;
+    border: 1px solid #5E8F3E;
+    border-radius: 12px;
+    color: white;
+    display: inline-flex;
+    font-family: var(--f-heading);
+    font-size: clamp(1.25rem, 1.0278rem + .463vw, 1.375rem);
+    font-weight: 400;
+    height: clamp(3.25rem, 2.1389rem + 2.3148vw, 3.875rem);
+    isolation: isolate;
+    justify-content: center;
+    letter-spacing: .5px;
+    line-height: 1;
+    outline: none;
+    padding: 0 1rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+    white-space: nowrap;
+}
+
+.levelup-btn--large {
+    height: clamp(3.875rem, 2.7639rem + 2.3148vw, 4.5rem);
+}
+
+.levelup-btn:after {
+    background: rgba(var(--c-black), 1);
+    border-radius: 7.3px;
+    content: "";
+    height: calc(100% + 1px);
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: all .25s ease;
+    width: 100%;
+    z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+    .levelup-comparison-table .levelup-wrapper {
+        width: 100%;
+    }
+    
+    .levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__body {
+        padding-left: 20px;
+    }
+    
+    .levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__item:first-child {
+        font-family: var(--f-body);
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -.12px;
+    }
+    
+    .levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__row:first-child .levelup-comparison-table__item:nth-child(2) {
+        padding-bottom: 4px;
+        padding-top: 1rem;
+    }
+    
+    .levelup-comparison-table.levelup-comparison-table--block .levelup-comparison-table__row:first-child .levelup-comparison-table__item:nth-child(3) {
+        font-size: 1.8rem;
+        padding-bottom: 4px;
+        padding-inline: 24px;
+    }
+}
+</style>
+{% schema %}
+  {
+    "name": "Comparison Table",
+    "settings": [
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading",
+        "default": "Comparison"
+      },
+      {
+        "id": "competitor-text",
+        "type": "text",
+        "label": "competitor text",
+        "default": "competitors"
+      },
+      {
+        "id": "btn-title",
+        "type": "text",
+        "label": "Buttom text",
+        "default": "Shop Now"
+      },
+      {
+        "id": "under-btn-text",
+        "type": "text",
+        "label":"Text under button",
+        "default": "Free shipping"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "comparison",
+        "type": "text",
+        "settings": [
+          {
+            "id": "block-title",
+            "type": "text",
+            "label": "Title",
+            "default": "Title"
+          },
+          {
+            "id": "brand-text",
+            "type": "text",
+            "label": "Brand text",
+            "default": "Good"
+          },
+          {
+            "id": "competitor-text",
+            "type": "text",
+            "label": "competitor text",
+            "default": "Bad"
+          }
+        ]
+      }
+    ],
+    "presets": [
+    {
+      "name": "Comparison Table"
+    }
+  ]
+  }
+{% endschema %}

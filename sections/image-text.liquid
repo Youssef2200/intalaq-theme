@@ -1,0 +1,61 @@
+{% assign image = block.settings.image %}
+{% assign text = block.settings.text %}
+{% assign subtext = block.settings.subtext %}
+
+<div class="flex-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;" itemscope itemtype="https://schema.org/ImageObject">
+  <div class="text-block" style="flex: 1; min-width: 200px;">
+    <p>{{ text }}</p>
+  </div>
+  
+  <div class="image-block" style="flex: 1; min-width: 200px; text-align: center;" itemprop="associatedMedia" itemscope itemtype="https://schema.org/MediaObject">
+    <img src="{{ image | image_url: 'medium' }}" 
+         alt="Image" 
+         style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+         width="{{ image.width }}" 
+         height="{{ image.height }}" 
+         itemprop="contentUrl">
+    {% if subtext %}
+      <p class="subtext" style="margin-top: 10px; font-size: 0.9rem; color: #666;" itemprop="caption">{{ subtext }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .flex-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .text-block, .image-block {
+      flex: 1 1 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Image and Text Block",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "Image",
+        "id": "id"
+      },
+      {
+        "type": "text",
+        "label": "Text",
+        "id": "text",
+        "default": "Your text here"
+      },
+      {
+        "type": "textarea",
+        "label": "Subtext",
+        "id": "subtext",
+        "default": "Your subtext here"
+      }
+    ]
+  }
+{% endschema %}
