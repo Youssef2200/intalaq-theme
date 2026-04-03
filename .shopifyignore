@@ -1,0 +1,6 @@
+# Dev-only paths — do not upload to Shopify (keeps theme lean; Cursor skill stays local)
+.cursor/
+.git/
+.gitignore
+**/__pycache__/
+*.pyc

@@ -1,0 +1,12 @@
+# Shopify CLI — live preview: `shopify theme dev` (from this folder).
+#
+# 1) Log in (browser):  shopify auth login
+# 2) Set your store below (subdomain only works, e.g. intalaq or intalaq.myshopify.com)
+#
+# Or skip `store` here and run:  shopify theme dev -s your-store.myshopify.com
+# Or use env:  SHOPIFY_FLAG_STORE=your-store.myshopify.com shopify theme dev
+#
+# Docs: https://shopify.dev/docs/storefronts/themes/tools/cli/environments
+
+[environments.default]
+store = "REPLACE-WITH-YOUR-STORE.myshopify.com"
