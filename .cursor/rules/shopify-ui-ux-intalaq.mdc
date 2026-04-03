@@ -1,0 +1,41 @@
+---
+description: Shopify theme UI/UX — UI/UX Pro Max skill + 21st.dev-inspired patterns for Intalaq
+globs:
+  - "**/*.liquid"
+  - "assets/**/*.css"
+  - "config/settings_schema.json"
+alwaysApply: false
+---
+
+# Intalaq theme — design workflow
+
+## UI/UX Pro Max ([nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill))
+
+This repo includes the skill under `.cursor/skills/ui-ux-pro-max/`. For **non-trivial** UI work (new sections, hero/collection redesigns, design-system-level changes), **read that `SKILL.md` and run the search CLI** before implementing.
+
+From the **theme root** (parent of `assets/`, `sections/`):
+
+```bash
+python3 .cursor/skills/ui-ux-pro-max/scripts/search.py "<product + industry + style keywords>" --design-system -p "Intalaq"
+```
+
+Refine with `--domain` (`ux`, `style`, `color`, `typography`, `landing`, `product`) and `--stack html-tailwind` as the skill describes.
+
+### Shopify mapping
+
+- **No Tailwind in repo by default:** Treat `html-tailwind` stack output as **patterns** (spacing scale, contrast, motion duration, layout intent). Implement with the theme’s existing CSS architecture (`assets/theme.css`, section-scoped classes, CSS variables from theme settings).
+- **Liquid first:** Structure, loops, and merchant-editable content stay in `sections/`, `snippets/`, `templates/`. Keep JS progressive-enhancement style unless the section already uses a heavier pattern.
+- **Performance:** Prefer existing assets; avoid large new dependencies. Match image lazy-loading and font loading patterns already in the theme.
+
+## 21st.dev ([21st.dev](https://21st.dev/))
+
+Use **21st.dev** as a **visual and interaction reference** (cards, heroes, modals, motion, spacing, modern ecommerce layouts)—not as copy-paste React.
+
+- **Do:** Recreate hierarchy, rhythm, hover/focus behavior, and micro-interactions using **CSS + small vanilla JS** consistent with this theme.
+- **Don’t:** Drop in React/Next/shadcn bundles or assume Tailwind classes exist unless the theme already uses them in that file.
+
+When a 21st.dev pattern implies a component API, **flatten it into static Liquid markup + CSS** and wire settings through the section `schema` so merchants can edit copy and imagery in the theme editor.
+
+## Priority checks (from UI/UX Pro Max)
+
+Ship only after addressing: **contrast (4.5:1 body text)**, **visible focus states**, **touch targets (~44px)**, **`prefers-reduced-motion`**, **no emoji-as-icons** (use SVGs already used in snippets), and **CLS** (dimensions or aspect-ratio for media above the fold).

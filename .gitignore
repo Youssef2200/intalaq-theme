@@ -4,3 +4,7 @@
 .env.*
 node_modules/
 .shopify/
+
+# Python bytecode (UI/UX Pro Max skill scripts)
+**/__pycache__/
+*.py[cod]
