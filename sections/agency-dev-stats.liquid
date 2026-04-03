@@ -1,0 +1,71 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-stats agency-dev-stats--v2"
+  id="agency-dev-stats-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-stats__glow" aria-hidden="true"></div>
+  <div class="agency-dev-stats__inner agency-dev-stagger">
+    <div
+      class="agency-dev-stat agency-dev-stagger-item"
+      data-agency-counter
+      data-target="120"
+      data-suffix="+"
+    >
+      <div class="agency-dev-stat__num" dir="ltr">
+        <span class="agency-dev-stat__value">0</span><span class="agency-dev-stat__suffix">+</span>
+      </div>
+      <div class="agency-dev-stat__label">مشروع ويب منجز</div>
+    </div>
+    <div
+      class="agency-dev-stat agency-dev-stagger-item"
+      data-agency-counter
+      data-target="7"
+      data-suffix="+"
+    >
+      <div class="agency-dev-stat__num" dir="ltr">
+        <span class="agency-dev-stat__value">0</span><span class="agency-dev-stat__suffix">+</span>
+      </div>
+      <div class="agency-dev-stat__label">سنوات خبرة</div>
+    </div>
+    <div
+      class="agency-dev-stat agency-dev-stagger-item"
+      data-agency-counter
+      data-target="99"
+      data-suffix="%"
+    >
+      <div class="agency-dev-stat__num" dir="ltr">
+        <span class="agency-dev-stat__value">0</span><span class="agency-dev-stat__suffix">%</span>
+      </div>
+      <div class="agency-dev-stat__label">رضا العملاء</div>
+    </div>
+    <div
+      class="agency-dev-stat agency-dev-stagger-item"
+      data-agency-counter
+      data-target="24"
+      data-suffix="h"
+    >
+      <div class="agency-dev-stat__num" dir="ltr">
+        <span class="agency-dev-stat__value">0</span><span class="agency-dev-stat__suffix">h</span>
+      </div>
+      <div class="agency-dev-stat__label">زمن الاستجابة الأولى</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — stats",
+  "tag": "section",
+  "class": "section-agency-dev-stats",
+  "settings": [],
+  "presets": [{ "name": "Agency stats" }]
+}
+{% endschema %}

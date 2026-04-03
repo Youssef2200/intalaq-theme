@@ -1,0 +1,114 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-portfolio agency-dev-portfolio--v2"
+  id="agency-dev-portfolio-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  data-agency-portfolio
+  data-section-id="{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-portfolio__inner">
+    <header class="agency-dev-section-head agency-dev-reveal" data-agency-anim>
+      <p class="agency-dev-section-kicker">أعمال مختارة</p>
+      <h2 class="agency-dev-section-title">مشاريع نفخر بتنفيذها</h2>
+      <p class="agency-dev-section-desc">
+        مرّر داخل الإطار للتنقل بين المشاريع — أو استخدم الأزرار للوصولية.
+      </p>
+    </header>
+
+    <div
+      class="agency-portfolio__viewport"
+      tabindex="0"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="معرض المشاريع"
+    >
+      <article class="agency-portfolio__card" data-card-index="0">
+        <div class="agency-portfolio__card-inner">
+          <div class="agency-portfolio__media">
+            <div class="agency-portfolio__placeholder agency-portfolio__placeholder--1" aria-hidden="true"></div>
+          </div>
+          <div class="agency-portfolio__body">
+            <div class="agency-portfolio__text">
+              <h3 class="agency-portfolio__title">متجر إلكتروني متعدد اللغات</h3>
+              <p class="agency-portfolio__subtitle">Shopify — أداء وتحويل محسّن</p>
+            </div>
+            <span class="agency-portfolio__read agency-portfolio__read--static"><span>التفاصيل</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="agency-portfolio__card" data-card-index="1">
+        <div class="agency-portfolio__card-inner">
+          <div class="agency-portfolio__media">
+            <div class="agency-portfolio__placeholder agency-portfolio__placeholder--2" aria-hidden="true"></div>
+          </div>
+          <div class="agency-portfolio__body">
+            <div class="agency-portfolio__text">
+              <h3 class="agency-portfolio__title">منصة داخلية للعملاء</h3>
+              <p class="agency-portfolio__subtitle">لوحات تحكم — واجهات برمجية آمنة</p>
+            </div>
+            <span class="agency-portfolio__read agency-portfolio__read--static"><span>التفاصيل</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="agency-portfolio__card" data-card-index="2">
+        <div class="agency-portfolio__card-inner">
+          <div class="agency-portfolio__media">
+            <div class="agency-portfolio__placeholder agency-portfolio__placeholder--3" aria-hidden="true"></div>
+          </div>
+          <div class="agency-portfolio__body">
+            <div class="agency-portfolio__text">
+              <h3 class="agency-portfolio__title">هبوط تسويقي عالي السرعة</h3>
+              <p class="agency-portfolio__subtitle">Lighthouse — حملات مدفوعة</p>
+            </div>
+            <span class="agency-portfolio__read agency-portfolio__read--static"><span>التفاصيل</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="agency-portfolio__card" data-card-index="3">
+        <div class="agency-portfolio__card-inner">
+          <div class="agency-portfolio__media">
+            <div class="agency-portfolio__placeholder agency-portfolio__placeholder--4" aria-hidden="true"></div>
+          </div>
+          <div class="agency-portfolio__body">
+            <div class="agency-portfolio__text">
+              <h3 class="agency-portfolio__title">تجديد تجربة المنتج</h3>
+              <p class="agency-portfolio__subtitle">UX — نظام مكونات وتصميم</p>
+            </div>
+            <span class="agency-portfolio__read agency-portfolio__read--static"><span>التفاصيل</span></span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="agency-portfolio__hint">مرّر للأعلى أو للأسفل داخل الإطار للتنقل بين المشاريع</p>
+    <div class="agency-portfolio__nav" role="group" aria-label="تنقل المعرض">
+      <button type="button" class="agency-portfolio__nav-btn" data-portfolio-nav="prev" aria-label="المشروع السابق">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button type="button" class="agency-portfolio__nav-btn" data-portfolio-nav="next" aria-label="المشروع التالي">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — portfolio",
+  "tag": "section",
+  "class": "section-agency-dev-portfolio",
+  "settings": [],
+  "presets": [{ "name": "Agency portfolio" }]
+}
+{% endschema %}

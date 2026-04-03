@@ -1,0 +1,47 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-quote agency-dev-quote--v2"
+  id="agency-dev-quote-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-quote__inner">
+    <header class="agency-dev-section-head agency-dev-reveal" data-agency-anim>
+      <p class="agency-dev-section-kicker">ثقة العملاء</p>
+      <h2 class="agency-dev-section-title">شركاء نفتخر بالعمل معهم</h2>
+    </header>
+
+    <div class="agency-dev-quote__grid" data-agency-quotes>
+      <blockquote class="agency-dev-quote__card agency-dev-quote__card--v2">
+        <p class="agency-dev-quote__text">
+          «فريق محترف: التزام بالمواعيد، تواصل واضح، والمتجر أصبح أسرع بشكل ملحوظ بعد إعادة هيكلة الواجهة.»
+        </p>
+        <footer class="agency-dev-quote__author">سارة المالكي</footer>
+        <div class="agency-dev-quote__role">المدير التقني — علامة تجارية للتجزئة</div>
+      </blockquote>
+      <blockquote class="agency-dev-quote__card agency-dev-quote__card--v2">
+        <p class="agency-dev-quote__text">
+          «أخيراً تجربة عربية كاملة دون مساومة على الأداء. التسليم كان منظماً والوثائق واضحة لفريقنا الداخلي.»
+        </p>
+        <footer class="agency-dev-quote__author">يوسف النجار</footer>
+        <div class="agency-dev-quote__role">المؤسس — شركة ناشئة في التقنية المالية</div>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — quotes",
+  "tag": "section",
+  "class": "section-agency-dev-testimonials",
+  "settings": [],
+  "presets": [{ "name": "Agency quotes" }]
+}
+{% endschema %}

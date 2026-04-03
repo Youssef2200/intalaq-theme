@@ -1,0 +1,36 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-cta agency-dev-cta--v2"
+  id="agency-dev-cta-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-cta__inner agency-dev-reveal" data-agency-anim>
+    <div class="agency-dev-cta__box" data-agency-cta-glow>
+      <h2 class="agency-dev-cta__title">لنصنع منتجك الرقمي التالي معاً</h2>
+      <p class="agency-dev-cta__text">
+        أرسل لنا فكرتك أو نطاق عملك — نرد بخطة عمل واضحة خلال يوم عمل.
+      </p>
+      <div class="agency-dev-cta__actions">
+        <a class="agency-dev-btn agency-dev-btn--primary agency-dev-btn--xl" href="/">تواصل معنا</a>
+        <a class="agency-dev-btn agency-dev-btn--ghost agency-dev-btn--xl" href="/collections/all">اطلب عرض سعر</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — CTA",
+  "tag": "section",
+  "class": "section-agency-dev-cta",
+  "settings": [],
+  "presets": [{ "name": "Agency CTA" }]
+}
+{% endschema %}

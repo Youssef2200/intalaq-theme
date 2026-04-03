@@ -18,7 +18,7 @@
   class="logo-img no-underline inline-flex align-center{% if request.page_type != 'index' %} h1 my-0{% endif %}"
   href="{{ routes.root_url }}"
   aria-label="{{ shop_name }}"
-  {{ block.shopify_attributes }}
+  {% if block != blank %}{{ block.shopify_attributes }}{% endif %}
 >
   {%- if logo_image != blank or logo_transparent != blank -%}
     {%- assign logo_height = logo_width | divided_by: logo_image.aspect_ratio | round -%}

@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#96BE45">
     <link rel="canonical" href="{{ canonical_url }}">
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -180,11 +180,27 @@
     {% endstyle %}
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
+    {{ 'intalaq-shell.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'popup.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ 'popup.css' | asset_url }}"></noscript>
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'motion.min.js' | asset_url }}" type="module" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {% if template.name == 'index' %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      >
+      {{ 'agency-home.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'three.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'agency-glsl-hills.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'agency-portfolio.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'agency-home.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       if (Shopify.designMode) {
@@ -206,13 +222,14 @@ h1, h2, h3, h4, h5, p, body, html, a, button, input, label, div, span {
   >
     {%- liquid
       render 'preload-page'
-      sections 'header-group'
+      section 'ann-bar-scrolling'
+      section 'intalaq-custom-header'
     -%}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-    {% sections 'footer-group' %}
+    {% section 'intalaq-custom-footer' %}
     {%- liquid
       sections 'overlay-group'
       section 'mobile-navigation-bar'

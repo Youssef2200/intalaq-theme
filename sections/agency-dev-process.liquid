@@ -1,0 +1,64 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-process agency-dev-process--v2"
+  id="agency-dev-process-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-process__inner">
+    <header class="agency-dev-section-head agency-dev-reveal" data-agency-anim>
+      <p class="agency-dev-section-kicker">كيف نعمل</p>
+      <h2 class="agency-dev-section-title">من الفكرة إلى الإطلاق بخطوات واضحة</h2>
+      <p class="agency-dev-section-desc">
+        عملية شفافة، تقارير منتظمة، وتسليم ضمن نطاق متفق عليه.
+      </p>
+    </header>
+
+    <div class="agency-dev-steps agency-dev-steps--v2" data-agency-steps>
+      <div class="agency-dev-step agency-dev-stagger-item agency-dev-step--v2">
+        <div class="agency-dev-step__num">01</div>
+        <h3 class="agency-dev-step__title">اكتشاف وتعريف</h3>
+        <p class="agency-dev-step__text">
+          ورش عمل قصيرة، تحليل منافسين، وتحديد نطاق المشروع والجدول الزمني والمخرجات.
+        </p>
+      </div>
+      <div class="agency-dev-step agency-dev-stagger-item agency-dev-step--v2">
+        <div class="agency-dev-step__num">02</div>
+        <h3 class="agency-dev-step__title">تصميم وتجربة</h3>
+        <p class="agency-dev-step__text">
+          هيكلة المحتوى، نماذج تفاعلية، وتجربة مستخدم متسقة مع هوية علامتك.
+        </p>
+      </div>
+      <div class="agency-dev-step agency-dev-stagger-item agency-dev-step--v2">
+        <div class="agency-dev-step__num">03</div>
+        <h3 class="agency-dev-step__title">تطوير واختبار</h3>
+        <p class="agency-dev-step__text">
+          شيفرة قابلة للصيانة، اختبار أجهزة ومتصفحات، وتوافق مع معايير الوصول.
+        </p>
+      </div>
+      <div class="agency-dev-step agency-dev-stagger-item agency-dev-step--v2">
+        <div class="agency-dev-step__num">04</div>
+        <h3 class="agency-dev-step__title">إطلاق ودعم</h3>
+        <p class="agency-dev-step__text">
+          نشر آمن، مراقبة بعد الإطلاق، وتحسينات مستندة إلى البيانات والملاحظات.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — process",
+  "tag": "section",
+  "class": "section-agency-dev-process",
+  "settings": [],
+  "presets": [{ "name": "Agency process" }]
+}
+{% endschema %}

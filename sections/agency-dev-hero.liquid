@@ -1,0 +1,67 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+
+<div
+  class="agency-dev agency-dev-hero agency-dev-hero--with-glsl agency-dev-hero--v2"
+  id="agency-dev-hero-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  data-agency-glsl-root
+  data-camera-z="125"
+  data-plane-size="256"
+  data-speed="0.5"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-hero__glsl-wrap" aria-hidden="true">
+    <canvas
+      class="agency-dev-hero__glsl-canvas"
+      data-agency-glsl-canvas
+      width="800"
+      height="600"
+    ></canvas>
+    <div class="agency-dev-hero__glsl-fallback"></div>
+  </div>
+
+  <div class="agency-dev-hero__bg">
+    <div class="agency-dev-hero__mesh agency-dev-hero__mesh--v2"></div>
+    <div class="agency-dev-hero__grid agency-dev-hero__grid--v2"></div>
+    <div class="agency-dev-hero__glow-orb" aria-hidden="true"></div>
+  </div>
+
+  <div class="agency-dev-hero__inner agency-dev-hero__inner--center">
+    <p class="agency-dev-hero__eyebrow agency-dev-hero__reveal" data-agency-anim>
+      <span class="agency-dev-hero__eyebrow-dot"></span>
+      استوديو تطوير ويب
+    </p>
+
+    <h1 class="agency-dev-hero__title agency-dev-hero__reveal" data-agency-anim>
+      <span class="agency-dev-hero__title-line agency-dev-hero__title-line--accent">نصوص نحوّلها إلى منتجات رقمية</span>
+      <span class="agency-dev-hero__title-line agency-dev-hero__title-line--main">تتقدّم بأدائها وتتفوّق بتصميمها</span>
+    </h1>
+
+    <div class="agency-dev-hero__lead agency-dev-hero__reveal rte" data-agency-anim>
+      <p>
+        نحوّل أفكارك إلى منتجات رقمية سريعة وواضحة — من Shopify إلى المنصات المخصّصة، بشيفرة نظيفة وتجربة مستخدم مقصودة.
+      </p>
+    </div>
+
+    <div class="agency-dev-hero__actions agency-dev-hero__reveal" data-agency-anim>
+      <a class="agency-dev-btn agency-dev-btn--primary agency-dev-btn--xl" href="/">ابدأ مشروعك</a>
+      <a class="agency-dev-btn agency-dev-btn--ghost agency-dev-btn--xl" href="/collections/all">تعرّف على أعمالنا</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — hero",
+  "tag": "section",
+  "class": "section-agency-dev-hero",
+  "settings": [],
+  "presets": [{ "name": "Agency hero" }]
+}
+{% endschema %}

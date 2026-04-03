@@ -1,0 +1,72 @@
+{% liquid
+  assign agency_dir = 'ltr'
+  if request.locale.iso_code contains 'ar'
+    assign agency_dir = 'rtl'
+  endif
+%}
+<div
+  class="agency-dev agency-dev-services agency-dev-services--v2"
+  id="agency-dev-services-{{ section.id }}"
+  dir="{{ agency_dir }}"
+  lang="{{ request.locale.iso_code }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="agency-dev-services__inner">
+    <header class="agency-dev-section-head agency-dev-reveal" data-agency-anim>
+      <p class="agency-dev-section-kicker">ما نقدمه</p>
+      <h2 class="agency-dev-section-title">حلول ويب متكاملة لعلامتك</h2>
+      <p class="agency-dev-section-desc">
+        تطوير متاجر Shopify، مواقع مخصصة، وتحسين الأداء — من الفكرة إلى الإطلاق بمعايير احترافية.
+      </p>
+    </header>
+
+    <div class="agency-dev-bento" data-agency-bento>
+      <article class="agency-dev-card agency-dev-card--wide agency-dev-card--v2">
+        <div class="agency-dev-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3 class="agency-dev-card__title">متاجر Shopify</h3>
+        <p class="agency-dev-card__text">
+          تصميم وتطوير متاجر عربية ومتعددة اللغات مع تركيز على التحويل والسرعة والامتثال لأفضل ممارسات المنصة.
+        </p>
+      </article>
+      <article class="agency-dev-card agency-dev-card--v2">
+        <div class="agency-dev-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <h3 class="agency-dev-card__title">منصات وتطبيقات ويب</h3>
+        <p class="agency-dev-card__text">
+          واجهات حديثة، تكامل مع أنظمتك، وواجهات برمجية آمنة — من الفكرة إلى الإنتاج.
+        </p>
+      </article>
+      <article class="agency-dev-card agency-dev-card--v2">
+        <div class="agency-dev-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="agency-dev-card__title">الأداء وSEO</h3>
+        <p class="agency-dev-card__text">
+          تحسين مؤشرات الأداء، بنية بيانات واضحة، وجاهزية تقنية لمحركات البحث.
+        </p>
+      </article>
+      <article class="agency-dev-card agency-dev-card--v2">
+        <div class="agency-dev-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 class="agency-dev-card__title">تجربة المستخدم</h3>
+        <p class="agency-dev-card__text">
+          هندسة معلومات، نماذج أولية، وتصميم واجهات يخدم أهدافك التجارية بوضوح.
+        </p>
+      </article>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Agency — services",
+  "tag": "section",
+  "class": "section-agency-dev-services",
+  "settings": [],
+  "presets": [{ "name": "Agency services" }]
+}
+{% endschema %}

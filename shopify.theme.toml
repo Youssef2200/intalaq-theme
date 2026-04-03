@@ -9,4 +9,4 @@
 # Docs: https://shopify.dev/docs/storefronts/themes/tools/cli/environments
 
 [environments.default]
-store = "REPLACE-WITH-YOUR-STORE.myshopify.com"
+store = "decointeriors.myshopify.com"

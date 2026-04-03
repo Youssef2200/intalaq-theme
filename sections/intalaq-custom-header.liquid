@@ -1,0 +1,104 @@
+{% liquid
+  assign enable_rtl = settings.rtl
+  assign iso_code = request.locale.iso_code
+  assign lis_language_rtl = settings.language_rtl
+  if lis_language_rtl != blank
+    if lis_language_rtl contains iso_code
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
+  assign ilq_menu = linklists['intalaq-menu']
+  if ilq_menu == blank or ilq_menu.links.size == 0
+    assign ilq_menu = linklists['main-menu']
+  endif
+%}
+
+<header class="ilq-header" id="intalaq-header-{{ section.id }}" {{ section.shopify_attributes }}>
+  <input type="checkbox" id="ilq-nav-toggle-{{ section.id }}" class="ilq-nav-toggle">
+
+  <div class="ilq-bar">
+    <div class="ilq-bar__start">
+      <label for="ilq-nav-toggle-{{ section.id }}" class="ilq-burger" aria-label="{{ 'accessibility.menu' | t | default: 'القائمة' }}">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      {% if request.page_type == 'index' %}
+        <h1 class="my-0 inline-flex align-center">
+      {% endif %}
+      <a href="{{ routes.root_url }}" class="ilq-logo logo-img no-underline inline-flex align-center" aria-label="{{ shop.name }}">
+        {% if settings.logo != blank %}
+          <img
+            src="{{ settings.logo | image_url: width: 280 }}"
+            alt="{{ shop.name | escape }}"
+            width="{{ settings.desktop_logo_width | default: 134 }}"
+            height="auto"
+            loading="eager"
+            style="max-height: 44px; width: auto;"
+          >
+        {% else %}
+          <span class="text-logo">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+      {% if request.page_type == 'index' %}
+        </h1>
+      {% endif %}
+    </div>
+
+    <nav class="ilq-nav-desktop" aria-label="{{ 'sections.header.menu' | t | default: 'القائمة الرئيسية' }}">
+      {% for link in ilq_menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="ilq-bar__actions">
+      {% render 'intalaq-language-dropdown' %}
+
+      {% if settings.search_type == 'default' or settings.search_type == 'popup' %}
+        {% render 'top-search-header' %}
+      {% endif %}
+
+      {% render 'minicart_header', action_after_add_cart: settings.action_after_add_cart %}
+    </div>
+  </div>
+
+  <label for="ilq-nav-toggle-{{ section.id }}" class="ilq-scrim" aria-hidden="true"></label>
+
+  <nav class="ilq-mobile-panel" aria-label="{{ 'sections.header.menu' | t | default: 'القائمة' }}">
+    <div class="ilq-mobile-panel__head">
+      <span class="text-logo" style="font-weight: 700; color: var(--ilq-header-text, #f4faf0);">{{ shop.name }}</span>
+      <label for="ilq-nav-toggle-{{ section.id }}" class="ilq-mobile-close">{{ 'accessibility.close' | t | default: 'إغلاق' }}</label>
+    </div>
+    {% if shop.published_locales.size > 1 %}
+      <div class="ilq-mobile-lang">
+        <p class="ilq-mobile-lang__label">اللغة / Language</p>
+        <div class="ilq-mobile-lang__links">
+          {% for locale in shop.published_locales %}
+            <a
+              href="{{ locale.root_url }}"
+              hreflang="{{ locale.iso_code }}"
+              class="ilq-lang-pill{% if locale.iso_code == request.locale.iso_code %} ilq-lang-pill--active{% endif %}"
+            >
+              {% if locale.iso_code == 'ar' %}العربية{% elsif locale.iso_code == 'en' %}EN{% else %}{{ locale.name | default: locale.iso_code | upcase }}{% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+    {% for link in ilq_menu.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+    <a href="{{ routes.cart_url }}">{{ 'general.cart.label' | t }} ({{ cart.item_count }})</a>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Intalaq header",
+  "class": "section-intalaq-header",
+  "settings": [],
+  "presets": [{ "name": "Intalaq header" }]
+}
+{% endschema %}

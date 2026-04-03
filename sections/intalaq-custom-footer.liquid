@@ -1,0 +1,160 @@
+{% liquid
+  assign menu_services = linklists['link-list']
+  assign menu_quick = linklists['link-list-1']
+%}
+
+<footer class="ilq-footer" id="intalaq-footer-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div class="ilq-footer__inner">
+    <div class="ilq-footer__grid">
+      <div class="ilq-footer__brand">
+        <a href="{{ routes.root_url }}" class="ilq-logo no-underline inline-flex align-center">
+          {% if settings.logo != blank %}
+            <img
+              src="{{ settings.logo | image_url: width: 220 }}"
+              alt="{{ shop.name | escape }}"
+              width="{{ settings.desktop_logo_width | default: 134 }}"
+              loading="lazy"
+              style="max-height: 40px; width: auto; filter: brightness(1.1);"
+            >
+          {% else %}
+            <span class="text-logo" style="font-weight: 800; font-size: 1.25rem; color: #f4faf0;">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+        <p>
+          {{ section.settings.tagline | default: 'منصتك للتجارة الإلكترونية بالعربية — تصميم، أداء، ودعم يضعك في المقدمة.' }}
+        </p>
+        {% if section.settings.show_social %}
+          <div class="mt-20">
+            {% render 'social-icons' %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if menu_services != blank and menu_services.links.size > 0 %}
+        <div class="ilq-footer__col">
+          <h3>{{ section.settings.services_heading | default: 'خدماتنا' }}</h3>
+          <ul>
+            {% for link in menu_services.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if menu_quick != blank and menu_quick.links.size > 0 %}
+        <div class="ilq-footer__col">
+          <h3>{{ section.settings.quick_heading | default: 'روابط سريعة' }}</h3>
+          <ul>
+            {% for link in menu_quick.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="ilq-footer__newsletter">
+        <h3>{{ section.settings.newsletter_heading | default: 'انضم إلى نشرتنا' }}</h3>
+        <p>{{ section.settings.newsletter_text | default: 'نصائح وتحديثات لمتجرك — دون إزعاج.' }}</p>
+        {% form 'customer', class: 'ilq-footer__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input
+            type="email"
+            name="contact[email]"
+            value="{{ form.email }}"
+            placeholder="{{ section.settings.newsletter_placeholder | default: 'بريدك الإلكتروني' }}"
+            required
+            autocomplete="email"
+            aria-label="{{ 'newsletter.label' | t }}"
+          >
+          <button type="submit" name="commit">{{ section.settings.newsletter_button | default: 'اشترك' }}</button>
+          {% if form.posted_successfully? %}
+            <p class="mt-10" style="color: var(--ilq-brand, #96be45); width: 100%; flex-basis: 100%;">
+              {{ 'newsletter.success' | t }}
+            </p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+
+    <div class="ilq-footer__bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ section.settings.rights | default: 'جميع الحقوق محفوظة.' }}</span>
+      {% if section.settings.show_payment %}
+        <span class="payment-icons" style="opacity: 0.85;">
+          {% for type in shop.enabled_payment_types %}
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Intalaq footer",
+  "class": "section-intalaq-footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "وصف قصير",
+      "default": "منصتك للتجارة الإلكترونية بالعربية — تصميم، أداء، ودعم يضعك في المقدمة."
+    },
+    {
+      "type": "text",
+      "id": "services_heading",
+      "label": "عمود القائمة 1 — عنوان",
+      "default": "خدماتنا"
+    },
+    {
+      "type": "text",
+      "id": "quick_heading",
+      "label": "عمود القائمة 2 — عنوان",
+      "default": "روابط سريعة"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "عنوان النشرة",
+      "default": "انضم إلى نشرتنا"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "نص النشرة",
+      "default": "نصائح وتحديثات لمتجرك — دون إزعاج."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "حقل البريد — نص توضيحي",
+      "default": "بريدك الإلكتروني"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "زر الاشتراك",
+      "default": "اشترك"
+    },
+    {
+      "type": "text",
+      "id": "rights",
+      "label": "سطر الحقوق",
+      "default": "جميع الحقوق محفوظة."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "إظهار أيقونات التواصل",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment",
+      "label": "إظهار وسائل الدفع",
+      "default": true
+    }
+  ],
+  "presets": [{ "name": "Intalaq footer" }]
+}
+{% endschema %}

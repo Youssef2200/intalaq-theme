@@ -1,0 +1,26 @@
+{%- comment -%}
+  Arabic + English (EN) — direct links, no account/currency.
+{%- endcomment -%}
+{% if shop.published_locales.size > 1 %}
+  <nav class="ilq-lang-inline" aria-label="{{ 'localization.language_label' | t | default: 'Language' }}">
+    {% for locale in shop.published_locales %}
+      <a
+        href="{{ locale.root_url }}"
+        hreflang="{{ locale.iso_code }}"
+        lang="{{ locale.iso_code }}"
+        class="ilq-lang-pill{% if locale.iso_code == request.locale.iso_code %} ilq-lang-pill--active{% endif %}"
+        {% if locale.iso_code == request.locale.iso_code %}
+          aria-current="true"
+        {% endif %}
+      >
+        {% if locale.iso_code == 'ar' %}
+          العربية
+        {% elsif locale.iso_code == 'en' %}
+          EN
+        {% else %}
+          {{ locale.iso_code | upcase }}
+        {% endif %}
+      </a>
+    {% endfor %}
+  </nav>
+{% endif %}
